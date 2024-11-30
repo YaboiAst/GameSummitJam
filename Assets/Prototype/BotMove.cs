@@ -40,7 +40,7 @@ public class BotMove : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (rb is null) return;
-         
+        
         rb.velocity = Vector2.zero;
     }
 
