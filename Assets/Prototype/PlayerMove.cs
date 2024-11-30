@@ -23,7 +23,6 @@ public class PlayerMove : MonoBehaviour
         if (movementVector == Vector2.zero) return;
         
         Vector2 direction;
-        
         if (Math.Abs(movementVector.x) > Math.Abs(movementVector.y))
             direction = movementVector.x > 0 ? Vector2.right : Vector2.left;
         else
