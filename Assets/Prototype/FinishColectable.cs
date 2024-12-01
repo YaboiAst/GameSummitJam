@@ -10,7 +10,7 @@ public class FinishColectable : MonoBehaviour {
         
         if (other.gameObject.CompareTag("Player"))
         {
-            if (GameManager.Instance.itemList == 2){
+            if (GameManager.Instance.itemList == 7){
                 Debug.Log("Estojo");
                 FinishHUD.Instance.ShowUIWin();
             }

@@ -47,7 +47,7 @@ public class FinishHUD : MonoBehaviour
         // Win button logic
         Debug.Log("Winner winner chicken dinner!");
         GameManager.Instance.resetColectable();
-        SceneManager.LoadScene("Scenes/joao");
+        SceneManager.LoadScene("Scenes/TestCoins");
     }
 
     private void OnLoseButtonClick()
