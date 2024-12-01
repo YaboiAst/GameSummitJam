@@ -14,9 +14,16 @@ public class FinishHUD : MonoBehaviour
     public Button buttonWin;
     public Button buttonLose;
 
+<<<<<<< Updated upstream
     public CanvasGroup canvasGroup;
 
 
+=======
+    public AudioClip collectionSound; 
+
+    public string nextSceneName;
+    
+>>>>>>> Stashed changes
     private void Awake()
     {
         Instance = this;
@@ -45,6 +52,8 @@ public class FinishHUD : MonoBehaviour
     private void OnWinButtonClick()
     {
         // Win button logic
+
+        GetComponent<AudioSource>().PlayOneShot(collectionSound);
         Debug.Log("Winner winner chicken dinner!");
         GameManager.Instance.resetColectable();
         SceneManager.LoadScene("Scenes/TestCoins");
