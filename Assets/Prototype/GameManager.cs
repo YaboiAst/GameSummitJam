@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour {
     public void addColectable(){
         itemList++;
     }
+
+    public void resetColectable(){
+        itemList = 0;
+    }
     
 
 }
