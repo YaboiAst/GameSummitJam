@@ -28,9 +28,20 @@ public class PlayerMove : MonoBehaviour
         if (movementVector == Vector2.zero) return;
         
         if (Math.Abs(movementVector.x) > Math.Abs(movementVector.y))
-            direction = movementVector.x > 0 ? Vector2.right : Vector2.left;
+        {
+            if(movementVector.x > 0)
+                moveRight();
+            else
+                moveLeft();
+        }
         else
-            direction = movementVector.y > 0 ? Vector2.up : Vector2.down;
+        {
+            if(movementVector.y > 0)
+                moveUp();
+            else
+                moveDown();
+        }
+            
     }
 
     private void FixedUpdate()
@@ -55,5 +66,25 @@ public class PlayerMove : MonoBehaviour
             animator.transform.right = direction;
             rb.AddForce(direction * (speed * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
+    }
+
+    public void moveRight()
+    {
+        direction = Vector2.right;
+    }
+
+    public void moveLeft()
+    {
+        direction = Vector2.left;
+    }
+
+    public void moveUp()
+    {
+        direction = Vector2.up;
+    }
+
+    public void moveDown()
+    {
+        direction = Vector2.down;
     }
 }
