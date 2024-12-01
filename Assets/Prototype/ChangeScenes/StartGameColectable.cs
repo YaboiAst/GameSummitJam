@@ -16,8 +16,7 @@ public class StartGameColectable : MonoBehaviour
         {
             if (isStart)
             {
-                // SceneManager.LoadScene("Fase1");
-                Debug.Log("AAA");
+                SceneManager.LoadScene("Fase1");
             }
             else
             {
