@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16ae8d3795a85616699fe71287029470
+guid: e16841421534cbe9b8a3b252aa9b9aa3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tomas_vrau_0
+      name: idle_cienteista_uiui_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 288
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83e804546581d6480a1578fed2bbf296
-      internalID: -1584439629
+      spriteID: 15bcb47c020015a63bb5f8f41e4e3303
+      internalID: -1830650557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tomas_vrau_1
+      name: idle_cienteista_uiui_1
       rect:
         serializedVersion: 2
-        x: 256
+        x: 288
         y: 0
-        width: 256
-        height: 256
+        width: 288
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e79cf582b8bcc14c9ba81c11f7da3250
-      internalID: -1826370801
+      spriteID: 5f0bbb9a2e5f90b43bf6c6e737897d1d
+      internalID: -577531001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tomas_vrau_2
+      name: idle_cienteista_uiui_2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 576
         y: 0
-        width: 256
-        height: 256
+        width: 288
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9081e3d8f94381f3b18a0ce8918a54f
-      internalID: -1346529197
+      spriteID: 4a6af95a011fd31a3b3013cb6800841d
+      internalID: 1130897693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tomas_vrau_3
+      name: idle_cienteista_uiui_3
       rect:
         serializedVersion: 2
-        x: 768
+        x: 864
         y: 0
-        width: 256
-        height: 256
+        width: 288
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fea106b22fa5740c0985cf876104a885
-      internalID: -1384844481
+      spriteID: d863ab98bd3e147cb9a4f53f60822826
+      internalID: -860293477
       vertices: []
       indices: 
       edges: []
@@ -211,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tomas_vrau_1: -1826370801
-      tomas_vrau_2: -1346529197
-      tomas_vrau_3: -1384844481
-      tomas_vrau_0: -1584439629
+      idle_cienteista_uiui_1: -577531001
+      idle_cienteista_uiui_0: -1830650557
+      idle_cienteista_uiui_2: 1130897693
+      idle_cienteista_uiui_3: -860293477
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

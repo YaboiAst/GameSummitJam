@@ -11,17 +11,24 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
-    private Collider2D col2d;
+    private Vector3 unstuckPosition;
     
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        col2d = GetComponent<Collider2D>();
+        unstuckPosition = transform.position;
     }
 
     private Vector2 direction;
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            direction = Vector2.zero;
+            transform.position = unstuckPosition;
+            animator.transform.up = Vector3.up;
+        }
+        
         var movementVector = new Vector2(0, 0);
         movementVector.x = Input.GetAxis("Horizontal");
         movementVector.y = Input.GetAxis("Vertical");
@@ -41,19 +48,18 @@ public class PlayerMove : MonoBehaviour
             else
                 moveDown();
         }
-            
     }
 
     private void FixedUpdate()
     {
         if (rb.velocity != Vector2.zero)
         {
-            var hit = Physics2D.Raycast(transform.position, direction, distance: 1.5f);
+            var hit = Physics2D.Raycast(transform.position, direction, distance: 1.1f);
             if (hit.collider is not null && hit.collider.CompareTag("Wall"))
             {
                 animator.transform.up = -direction;
-                rb.velocity = Vector2.zero;
                 direction = Vector2.zero;
+                rb.velocity = Vector2.zero;
                 animator.SetTrigger("Landed");
             }
         }
@@ -61,8 +67,19 @@ public class PlayerMove : MonoBehaviour
         {
             if (direction == Vector2.zero) return;
             if (direction == -1 * ((Vector2) animator.transform.up)) return;
+            
+            var hit = Physics2D.Raycast(transform.position, direction, distance: 1.8f);
+            if (hit.collider is not null && hit.collider.CompareTag("Wall"))
+            {
+                animator.transform.position = new Vector3(animator.transform.position.x,
+                    animator.transform.position.y, animator.transform.position.z);
+                animator.transform.up = -direction;
+                direction = Vector2.zero;
+                rb.velocity = Vector2.zero;
+                return;
+            }
             animator.SetTrigger("Dash");
-
+            
             animator.transform.right = direction;
             rb.AddForce(direction * (speed * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
