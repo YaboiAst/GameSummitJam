@@ -7,9 +7,14 @@ using UnityEngine.UI;
 public class Swipe : MonoBehaviour
 {
 
+    private PlayerMove playerMove;
 
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
+
+    private void Awake() {
+        playerMove = GetComponent<PlayerMove>();
+    }
 
     private void Update()
     {
@@ -29,22 +34,22 @@ public class Swipe : MonoBehaviour
             {
                 if(inputVector.x > 0)
                 {
-                    //RightSwipe(); //Passa a função direto 
+                    playerMove.moveRight();
                 }
                 else
                 {
-                    //LeftSwipe();
+                    playerMove.moveLeft();
                 }
             }
             else
             {
                 if (inputVector.y > 0)
                 {
-                    //UpSwipe();
+                    playerMove.moveUp();
                 }
                 else
                 {
-                    //DownSwipe();
+                    playerMove.moveDown();
                 }
             }
         }
