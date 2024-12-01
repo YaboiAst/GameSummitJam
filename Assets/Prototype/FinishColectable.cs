@@ -12,6 +12,7 @@ public class FinishColectable : MonoBehaviour {
         {
             if (GameManager.Instance.itemList == 2){
                 Debug.Log("Estojo");
+                FinishHUD.Instance.ShowUIWin();
             }
         }
     }
