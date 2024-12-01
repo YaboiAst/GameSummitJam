@@ -10,16 +10,15 @@ public class FinishHUD : MonoBehaviour
 {
     public static FinishHUD Instance;
 
-    public Canvas canvas;
+    public CanvasGroup cGroupWin, cGroupLose;
     public Button buttonWin;
     public Button buttonLose;
 
-    public CanvasGroup canvasGroup;
-
-
+    public string nextSceneName;
+    
     private void Awake()
     {
-        Instance = this;
+        Instance ??= this;
         HideUI();
         InitializeButtons();
     }
@@ -27,19 +26,33 @@ public class FinishHUD : MonoBehaviour
     private void InitializeButtons()
     {
         buttonWin.onClick.AddListener(OnWinButtonClick);
+        buttonWin.interactable = false;
+        
         buttonLose.onClick.AddListener(OnLoseButtonClick);
+        buttonLose.interactable = false;
     }
 
     public void ShowUIWin()
     {
-        canvasGroup.alpha = 1;
-        canvas.enabled = true;
-        buttonWin.enabled = true;
+        cGroupWin.alpha = 1;
+        buttonWin.interactable = true;
     }
 
+    public void ShowUILose()
+    {
+        cGroupLose.alpha = 1;
+        buttonLose.interactable = true;
+    }
+    
     public void HideUI()
     {
-        canvasGroup.alpha = 0;
+        cGroupWin.alpha = 0;
+        cGroupWin.interactable = false;
+        cGroupWin.blocksRaycasts = false;
+        
+        cGroupLose.alpha = 0;
+        cGroupLose.interactable = false;
+        cGroupLose.blocksRaycasts = false;
     }
 
     private void OnWinButtonClick()

@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (rb.velocity != Vector2.zero)
         {
-            var hit = Physics2D.Raycast(transform.position, direction, distance: 1.1f);
+            var hit = Physics2D.Raycast(transform.position, direction, distance: 1.2f);
             if (hit.collider is not null && hit.collider.CompareTag("Wall"))
             {
                 animator.transform.up = -direction;
@@ -68,7 +68,7 @@ public class PlayerMove : MonoBehaviour
             if (direction == Vector2.zero) return;
             if (direction == -1 * ((Vector2) animator.transform.up)) return;
             
-            var hit = Physics2D.Raycast(transform.position, direction, distance: 1.8f);
+            var hit = Physics2D.Raycast(transform.position, direction, distance: 1.2f);
             if (hit.collider is not null && hit.collider.CompareTag("Wall"))
             {
                 animator.transform.position = new Vector3(animator.transform.position.x,
