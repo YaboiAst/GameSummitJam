@@ -15,14 +15,13 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private Vector2 direction;
     private void Update()
     {
         var movementVector = new Vector2(0, 0);
         movementVector.x = Input.GetAxis("Horizontal");
         movementVector.y = Input.GetAxis("Vertical");
         if (movementVector == Vector2.zero) return;
-        
-        Vector2 direction;
         
         if (Math.Abs(movementVector.x) > Math.Abs(movementVector.y))
             direction = movementVector.x > 0 ? Vector2.right : Vector2.left;
@@ -35,6 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        transform.up = -direction;
         rb.velocity = Vector2.zero;
     }
 }
