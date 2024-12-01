@@ -22,6 +22,36 @@ public class PlayerMove : MonoBehaviour
     private Vector2 direction;
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            direction = Vector2.zero;
+            transform.position = unstuckPosition;
+            animator.transform.up = Vector3.up;
+        }
+        
+        var movementVector = new Vector2(0, 0);
+        movementVector.x = Input.GetAxis("Horizontal");
+        movementVector.y = Input.GetAxis("Vertical");
+        if (movementVector == Vector2.zero) return;
+        
+        if (Math.Abs(movementVector.x) > Math.Abs(movementVector.y))
+        {
+            if(movementVector.x > 0)
+                moveRight();
+            else
+                moveLeft();
+        }
+        else
+        {
+            if(movementVector.y > 0)
+                moveUp();
+            else
+                moveDown();
+        }
+    }
+
+    private void FixedUpdate()
+    {
         if (rb.velocity != Vector2.zero)
         {
             var hit = Physics2D.Raycast(transform.position, direction, distance: 1.5f);
@@ -35,39 +65,14 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                direction = Vector2.zero;
-                transform.position = unstuckPosition;
-                animator.transform.up = Vector3.up;
-            }
-        
-            var movementVector = new Vector2(0, 0);
-            movementVector.x = Input.GetAxis("Horizontal");
-            movementVector.y = Input.GetAxis("Vertical");
-            // if (movementVector == Vector2.zero) return;
-        
-            if (Math.Abs(movementVector.x) > Math.Abs(movementVector.y))
-            {
-                if(movementVector.x > 0)
-                    moveRight();
-                else
-                    moveLeft();
-            }
-            else
-            {
-                if(movementVector.y > 0)
-                    moveUp();
-                else
-                    moveDown();
-            }
-            
             if (direction == Vector2.zero) return;
             if (direction == -1 * ((Vector2) animator.transform.up)) return;
             
             var hit = Physics2D.Raycast(transform.position, direction, distance: 1.5f);
             if (hit.collider is not null && hit.collider.CompareTag("Wall"))
             {
+                animator.transform.position = new Vector3(animator.transform.position.x,
+                    animator.transform.position.y, animator.transform.position.z);
                 animator.transform.up = -direction;
                 direction = Vector2.zero;
                 rb.velocity = Vector2.zero;
@@ -78,11 +83,6 @@ public class PlayerMove : MonoBehaviour
             animator.transform.right = direction;
             rb.AddForce(direction * (speed * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     public void moveRight()
