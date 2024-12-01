@@ -8,12 +8,15 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float speed;
     private Rigidbody2D rb;
-    private Animator animator;
+
+    [SerializeField] private Animator animator;
+
+    private Collider2D col2d;
     
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        col2d = GetComponent<Collider2D>();
     }
 
     private Vector2 direction;
@@ -28,22 +31,29 @@ public class PlayerMove : MonoBehaviour
             direction = movementVector.x > 0 ? Vector2.right : Vector2.left;
         else
             direction = movementVector.y > 0 ? Vector2.up : Vector2.down;
-
-        if (rb.velocity != Vector2.zero) return;
-        if (direction == -1 * ((Vector2) transform.up)) return;
-        
-        animator.SetTrigger("Dash");
-
-        transform.right = direction;
-        rb.AddForce(direction * (speed * Time.deltaTime), ForceMode2D.Impulse);
     }
 
-    private void BackToIdle() => animator.SetTrigger("Landed");
-
-    private void OnCollisionEnter2D(Collision2D other)
+    private void FixedUpdate()
     {
-        transform.up = -direction;
-        rb.velocity = Vector2.zero;
-        animator.SetTrigger("Landed");
+        if (rb.velocity != Vector2.zero)
+        {
+            var hit = Physics2D.Raycast(transform.position, direction, distance: 1.5f);
+            if (hit.collider is not null && hit.collider.CompareTag("Wall"))
+            {
+                animator.transform.up = -direction;
+                rb.velocity = Vector2.zero;
+                direction = Vector2.zero;
+                animator.SetTrigger("Landed");
+            }
+        }
+        else
+        {
+            if (direction == Vector2.zero) return;
+            if (direction == -1 * ((Vector2) animator.transform.up)) return;
+            animator.SetTrigger("Dash");
+
+            animator.transform.right = direction;
+            rb.AddForce(direction * (speed * Time.fixedDeltaTime), ForceMode2D.Impulse);
+        }
     }
 }
